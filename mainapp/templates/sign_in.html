@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link rel="shortcut icon" type="image/ico" href="{{url_for('static',filename='images/favicon.ico')}}">
+  <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main.css') }}">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<title>Sign_In</title>
+
+</head>
+<body style="background: url({{ url_for('static',filename='images/logimg.jpg') }});background-repeat: no-repeat;background-position: center;background-size: cover; height: 100vh; font-family: 'Dancing Script', cursive;">
+	<section>
+
+		<!-- navbar -->
+<nav class="navbar navbar-expand-lg bg-color" id="navbar">
+	<a href="#" class="navbar-brand text-uppercase primary-color">JSS</a>
+	<button type="button" class="navbar-toggler" style="outline: none;" data-toggle="collapse" data-target="#myNavbar">
+		<div class="toggler-btn">
+			<div class="bar bar1"></div>
+			<div class="bar bar2"></div>
+			<div class="bar bar3"></div>
+		</div>
+	</button>
+
+	<div class="collapse navbar-collapse" id="myNavbar">
+		<ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+				<a href="#menu" class="nav-link text-capitalize">menu</a>
+			</li>
+			<li class="nav-item">
+				<a href="#about" class="nav-link text-capitalize">about</a>
+			</li>
+			<li class="nav-item">
+				<a href="#reviews" class="nav-link text-capitalize">reviews</a>
+			</li>
+			<li class="nav-item">
+				<a href="#team" class="nav-link text-capitalize">team</a>
+			</li>
+			<li class="nav-item">
+				<a href="#contact" class="nav-link text-capitalize">contact</a>
+			</li>
+		</ul>
+		<form class="form-inline d-none d-lg-block mr-5">
+			<button type="button" class="btn nav-btn text-capitalize"><a href="{{url_for('home')}}">Home</a></button>
+			
+		</form>
+		
+	</div>
+</nav>
+
+<!-- navbar ends -->
+		
+	</section>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-4 col-xs-12">
+			
+		</div>
+		<div class="col-md-4 col-xs-12">
+			<!-- form start -->
+				<form METHOD="post" class="form-container" autocomplete="off" >
+					<div class="box">
+					<h1>Login Here</h1>
+					<div class="form-group">
+						<label for="exampleInputEmail">Email Address</label>
+						{{ form.email (class="form-control form-control-lg ")}}
+                        {% if form.email.errors %}
+
+                            {% for error in form.email.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        {% else %}
+
+                        {% endif %}
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label>
+						{{ form.password (class="form-control form-control-lg ")}}
+                         {% if form.password.errors %}
+
+                            {% for error in form.password.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        {% else %}
+
+                        {% endif %}
+					</div>
+					<div class="checkbox">
+						{{form.remember.label}}
+					</div>
+                         <a href="{{ url_for('login') }}" >{{ form.submit(class="btn btn-block btn-success")}}</a>
+					<a href="{{url_for('register')}}"> Lost Your Password ?</a><br>
+  <p style="font-size: 12px; color: #242424;">Don't have an account ? <a href="{{url_for('register')}}">Let's Sign up &#128521;</a></p>
+
+				</form>
+			<!-- form end -->
+		</div>
+		<div class="col-md-4 col-sm-4 col-xs-12">
+			
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+  $("#navbar").mouseenter(function(){
+    $("#navbar").addClass("bg-color-1").removeClass("bg-color")
+  });
+  $("#navbar").mouseleave(function(){
+   $("#navbar").addClass("bg-color").removeClass("bg-color-1")
+  });
+});
+
+</script>
+</body>
+</html>
