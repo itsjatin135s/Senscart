@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+{% block content %}
+	<!-- Home -->	
+	<!-- Today's Deals on Flipkart -->
+
+	<div class="viewed">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="viewed_title_container">
+						<h3 class="viewed_title">Deals on Flipkart</h3>
+						<!-- <div class="viewed_nav_container">
+							<div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
+							<div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
+						</div> -->
+					</div>
+
+					<div class="viewed_slider_container">
+						
+						<!-- Recently Viewed Slider -->
+
+						<div class="owl-carousel owl-theme viewed_slider">
+						{% for (img,price,title,productlink) in flipdata%}	
+							<!-- Recently Viewed Item -->
+							<div class="owl-item"><a href="{{productlink}}">
+								<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+									<div class="viewed_image"><img src="{{img}}" alt=""></div>
+									<div class="viewed_content text-center">
+										<div class="viewed_price">{{price}}</div>
+										<div class="viewed_name">{{title}}</a></div>
+									</div>
+									<!-- <ul class="item_marks">
+										<li class="item_mark item_discount">-25%</li>
+										<li class="item_mark item_new">new</li>
+									</ul> -->
+								</div>
+							</div>
+						{% endfor %}
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Today's Deals on Amazon -->
+
+	<div class="viewed">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="viewed_title_container">
+						<h3 class="viewed_title">Deals on Amazon</h3>
+						<!-- <div class="viewed_nav_container">
+							<div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
+							<div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
+						</div> -->
+					</div>
+
+					<div class="viewed_slider_container">
+						
+						<!-- Recently Viewed Slider -->
+
+						<div class="owl-carousel owl-theme viewed_slider">
+						{% for (img1,price1,title1,productlink1) in amzdata %}	
+							<!-- Recently Viewed Item -->
+							<div class="owl-item"><a href="{{productlink1}}">
+								<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+									<div class="viewed_image"><img src="{{ img1 }}" alt=""></div>
+									<div class="viewed_content text-center">
+										<div class="viewed_price">{{ price1 }}</div>
+										<div class="viewed_name">{{ title1 }}</a></div>
+									</div>
+									<ul class="item_marks">
+										<!-- <li class="item_mark item_discount">-25%</li> -->
+										<!-- <li class="item_mark item_new">new</li> -->
+									</ul>
+								</div>
+							</div>
+						{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Trending on snapdeal -->
+
+	<div class="viewed">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="viewed_title_container">
+						<h3 class="viewed_title">Deals on Snapdeals</h3>
+						<!-- <div class="viewed_nav_container">
+							<div class="viewed_nav viewed_prev"><i class="fas fa-chevron-left"></i></div>
+							<div class="viewed_nav viewed_next"><i class="fas fa-chevron-right"></i></div>
+						</div> -->
+					</div>
+
+					<div class="viewed_slider_container">
+						
+						<!-- Recently Viewed Slider -->
+
+						<div class="owl-carousel owl-theme viewed_slider">
+						{% for (img2,price2,title2,productlink2) in snapdata %}	
+							<!-- Recently Viewed Item -->
+							<div class="owl-item"><a href="{{productlink2}}">
+								<div class="viewed_item discount d-flex flex-column align-items-center justify-content-center text-center">
+									<div class="viewed_image"><img src="{{ img2 }}" alt=""></div>
+									<div class="viewed_content text-center">
+										<div class="viewed_price">{{ price2 }}</div>
+										<div class="viewed_name">{{ title2 }}</a></div>
+									</div>
+									<ul class="item_marks">
+										<!-- <li class="item_mark item_discount">-25%</li> -->
+										<!-- <li class="item_mark item_new">new</li> -->
+									</ul>
+								</div>
+							</div>
+						{% endfor %}
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

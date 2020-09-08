@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>SenseCart</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="OneTech shop project">
+<link rel="shortcut icon" type="image/ico" href="{{url_for('static',filename='images/SenseCartfav.png')}}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{url_for('static',filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='plugins/OwlCarousel2-2.2.1/animate.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='plugins/jquery-ui-1.12.1.custom/jquery-ui.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/shop_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/shop_responsive.css')}}">
+
+</head>
+<body>
+
+<div class="super_container">
+	
+	<!-- Header -->
+	
+	<header class="header">
+
+		<!-- Top Bar -->
+
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col d-flex flex-row">
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{url_for('static',filename='images/phone.png')}}" alt=""></div>+1(226) 909-7098</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{url_for('static',filename='images/mail.png')}}" alt=""></div><a href="mailto:sensecartus@gmail.com">sensecartus@gmail.com</a></div>
+						<div class="top_bar_content ml-auto">
+							<div class="top_bar_user">
+								<div class="user_icon"><img src="{{url_for('static',filename='images/user.svg')}}" alt=""></div>
+								{%if current_user.is_authenticated%}
+								<div><a href="{{ url_for('SignOut') }}">SignOut</a></div>
+								{%else%}
+								<div><a href="{{ url_for('SignUp') }}">Sign Up</a></div>
+								<div><a href="{{ url_for('SignIn') }}">Sign In</a></div>
+								{%endif%}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+
+		<!-- Header Main -->
+
+		<div class="header_main">
+			<div class="container">
+				<div class="row">
+
+					<!-- Logo -->
+					<div class="col-lg-2 col-sm-3 col-3 order-1">
+						<div class="logo_container">
+
+							<div class="logo"><a href="#">SenseCart</a></div>
+							
+						</div>
+					</div>
+
+					<!-- Search -->
+					<div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+						<div class="header_search">
+							<div class="header_search_content">
+								<div class="header_search_form_container">
+									<form action="{{url_for('compare')}}" method="post" class="header_search_form clearfix" >
+										<input type="search" required="required" class="header_search_input" name="query" placeholder="Search for products...">
+										<div class="custom_dropdown">
+											<div class="custom_dropdown_list">
+												<span class="custom_dropdown_placeholder clc">All Categories</span>
+												<i class="fas fa-chevron-down"></i>
+												<ul class="custom_list clc">
+													<li><a class="clc" href="#">All Categories</a></li>
+													<li><a class="clc" href="#">Electronics</a></li>
+													<li><a class="clc" href="#">Fashion</a></li>
+													<li><a class="clc" href="#">Decoratives</a></li>
+													<li><a class="clc" href="#">Books</a></li>
+													<li><a class="clc" href="#">Cosmetics</a></li>
+												</ul>
+											</div>
+										</div>
+										<button type="submit" class="header_search_button trans_300" value="Submit" action="{{url_for('compare')}}" method="post">
+											<img src="{{url_for('static',filename='images/search.png')}}"  alt="">
+										</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Main Navigation -->
+
+		<nav class="main_nav">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						
+						<div class="main_nav_content d-flex flex-row">
+
+							<!-- Categories Menu -->
+
+							<div class="cat_menu_container">
+								<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+									<div class="cat_burger"><span></span><span></span><span></span></div>
+									<div class="cat_menu_text">categories</div>
+								</div>
+
+								<ul class="cat_menu">
+									<li class="hassubs">
+										<a href="#">Electronic Gadgets<i class="fas fa-chevron-right"></i></a>
+										<ul>
+											<li><a href="/compare/{{'laptop'}}">Laptops<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="/compare/{{'smartphone'}}">SmartPhones<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="/compare/{{'tv'}}">TV<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="/compare/{{'headphone'}}">Headphone<i class="fas fa-chevron-right"></i></a></li>
+											<li><a href="/compare/{{'speakers'}}">Speakers<i class="fas fa-chevron-right"></i></a></li>
+										</ul>
+									</li>
+									<li class="hassubs">
+										<a href="#">Men's Fashion<i class="fas fa-chevron-right"></i></a>
+										<ul>
+											<li class="hassubs">
+												<a href="#">Topwear<i class="fas fa-chevron-right"></i></a>
+												<ul>
+													<li><a href="/compare/{{'shirt-for-men'}}">Shirt<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'t-shirt-for-men'}}">T-Shirt<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'casual-shirt-for-men'}}">CasualShirt<i class="fas fa-chevron-right"></i></a></li>
+												</ul>
+											</li>
+											<li class="hassubs"><a href="#">Bottomwear<i class="fas fa-chevron-right"></i></a>
+												<ul>
+													<li><a href="/compare/{{'jeans-for-men'}}">Jeans<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'casual-trousers-for-men'}}">Casual Trousers<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'formal-trousers-for-men'}}">Formal Trousers<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'shorts-for-men'}}">Shorts<i class="fas fa-chevron-right"></i></a></li>
+												</ul>
+											</li>
+											<li class="hassubs"><a href="#">Footwear<i class="fas fa-chevron-right"></i></a>
+												<ul>
+													<li><a href="/compare/{{'sports-shoes-for-men'}}">Sport Shoes<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'casual-shoes-for-men'}}">Casual Shoes<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'formal-shoes-for-men'}}">Formal Shoes<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'sneakers-for-men'}}">Sneakers<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'slippers-for-men'}}">Slippers<i class="fas fa-chevron-right"></i></a></li>
+												</ul>
+											</li>
+										</ul>
+									</li>
+									<li class="hassubs" >
+										<a href="#">Women's Fashion<i class="fas fa-chevron-right"></i></a>
+										<ul>
+											<li class="hassubs">
+												<a href="#">Topwear<i class="fas fa-chevron-right"></i></a>
+												<ul>
+													<li><a href="/compare/{{'toppers-for-women'}}">Toppers<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'sarees'}}">Sarees<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'kurta-for-women'}}">Kurtas<i class="fas fa-chevron-right"></i></a></li>
+												</ul>
+											</li>
+											<li class="hassubs">
+												<a href="#">Bottomwear<i class="fas fa-chevron-right"></i></a>
+												<ul>
+													<li><a href="/compare/{{'jeans-for-women'}}">Jeans<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'shorts-for-women'}}">Shorts<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'skirts'}}">Skirts<i class="fas fa-chevron-right"></i></a></li>
+												</ul>
+											</li>
+											<li class="hassubs"><a href="#">Footwear<i class="fas fa-chevron-right"></i></a>
+												<ul>
+													<li><a href="/compare/{{'sports-shoes-for-women'}}">Sport Shoes<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'casual-shoes-for-women'}}">Casual Shoes<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'boots-for-women'}}">Boots<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'sneakers-for-women'}}">Sneakers<i class="fas fa-chevron-right"></i></a></li>
+													<li><a href="/compare/{{'slippers-for-women'}}">Slippers<i class="fas fa-chevron-right"></i></a></li>
+												</ul>
+											</li>
+										</ul>										
+									</li>
+									<li><a href="/compare/{{'decorarives'}}">Decoratives<i class="fas fa-chevron-right"></i></a></li>
+									<li><a href="/compare/{{'books'}}">Books<i class="fas fa-chevron-right"></i></a></li>
+									<li><a href="/compare/{{'cosmatics'}}">Cosmetics<i class="fas fa-chevron-right"></i></a></li>
+								</ul>
+							</div>
+
+							
+							<!-- Menu Trigger -->
+
+							<div class="menu_trigger_container ml-auto">
+								<div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
+									<div class="menu_burger">
+										<div class="menu_trigger_text">menu</div>
+										<div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+		
+		<!-- Menu -->
+
+		<div class="page_menu">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="page_menu_content">
+								<li class="page_menu_item">
+									<a href="{{url_for('SignUp')}}">Register<i class="fa fa-angle-down"></i></a>
+								</li>
+								<li class="page_menu_item"><a href="{{url_for('SignIn')}}">Login<i class="fa fa-angle-down"></i></a></li>
+								<li class="page_menu_item"><a href="#">Know More<i class="fa fa-angle-down"></i></a></li>
+							<div class="menu_contact">
+								<div class="menu_contact_item">
+									<div class="menu_contact_icon">
+										<img src="{{ url_for('static',filename='images/phone_white.png')}}" alt=""><a href="tel:+1-877-538-5888">
+									</div>+1(226) 909-7098
+								</div>
+								<div class="menu_contact_item">
+									<div class="menu_contact_icon">
+										<img src="{{ url_for('static',filename='images/mail_white.png')}}" alt="">
+									</div>
+									<a href="mailto:sensecartus@gmail.com">sensecartus@gmail.com</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="page_menu_search">
+			<form action="{{url_for('compare')}}" method="post">
+				<input type="search" required="required" class="page_menu_search_input" name="query" placeholder="Search for products...">
+				<button type="submit" class="header_search_button trans_300" value="Submit" action="{{url_for('compare')}}" method="post">
+					<img src="{{url_for('static',filename='images/search.png')}}" alt="">
+				</button>
+			</form>
+		</div>
+
+	</header>
+	
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="{{url_for('static',filename='images/shop_background.jpg')}}"></div>
+		<div class="home_overlay"></div>
+		<div class="home_content d-flex flex-column align-items-center justify-content-center">
+			<h1 class="home_title">Your Sixth Sens for Shooping</h1>
+		</div>
+	</div>
+
+	{% block content %} {% endblock %}
+	
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-3 footer_col">
+					<div class="footer_column footer_contact">
+						<div class="logo_container">
+							<div class="logo"><a href="#">SenseCart</a></div>
+						</div>
+						<div class="footer_title">Got Question? Call Us 24/7</div>
+						<div class="footer_phone">+1(226) 909-7098</div>
+						<div class="footer_contact_text">
+							<p>Alwar</p>
+							<p>Rajasthan,India</p>
+						</div>
+						<div class="footer_social">
+							<ul>
+								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fab fa-youtube"></i></a></li>
+								<li><a href="#"><i class="fab fa-google"></i></a></li>
+								<li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<div class="footer_column">
+						<div class="footer_title">Customer Care</div>
+						<ul class="footer_list">
+							<!-- <li><a href="#">My Account</a></li> -->
+							<!-- <li><a href="#">Order Tracking</a></li> -->
+							<!-- <li><a href="#">Wish List</a></li> -->
+							<li><a href="#">Customer Services</a></li>
+							<li><a href="#">FAQs</a></li>
+							<li><a href="#">Support</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+
+	<!-- Copyright -->
+
+	<!-- <div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					
+					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
+						<div class="copyright_content"> Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+<!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+ Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
+</div>
+						<div class="logos ml-sm-auto">
+							<ul class="logos_list">
+								<li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
+								<li><a href="#"><img src="images/logos_2.png" alt=""></a></li>
+								<li><a href="#"><img src="images/logos_3.png" alt=""></a></li>
+								<li><a href="#"><img src="images/logos_4.png" alt=""></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div> -->
+</div>
+
+
+<script src="{{ url_for('static',filename='script/jquery-3.3.1.min.js')}}"></script>
+<script src="{{ url_for('static',filename='styles/bootstrap4/popper.js')}}"></script>
+<script src="{{ url_for('static',filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/greensock/TweenMax.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/greensock/TimelineMax.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/greensock/animation.gsap.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/greensock/ScrollToPlugin.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/easing/easing.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/Isotope/isotope.pkgd.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/parallax-js-master/parallax.min.js')}}"></script>
+<script src="{{ url_for('static',filename='script/shop_custom.js')}}"></script>
+</body>
+
+</html>

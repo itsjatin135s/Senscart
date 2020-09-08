@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>SenseCart</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="OneTech shop project">
+<link rel="shortcut icon" type="image/ico" href="{{url_for('static',filename='images/SenseCartfav.png')}}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/bootstrap4/bootstrap.min.css')}}">
+<link href="{{url_for('static',filename='plugins/fontawesome-free-5.0.1/css/fontawesome-all.css')}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='plugins/OwlCarousel2-2.2.1/animate.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='plugins/jquery-ui-1.12.1.custom/jquery-ui.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/shop_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='styles/shop_responsive.css')}}">
+
+</head>
+<body>
+<div class="super_container">
+	
+	<!-- Header -->
+	
+	<header class="header">
+
+		<!-- Top Bar -->
+
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col d-flex flex-row">
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/phone.png" alt=""></div>+1(226) 909-7098</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="images/mail.png" alt=""></div><a href="mailto:sensecartus@gmail.com">sensecartus@gmail.com</a></div>
+						<div class="top_bar_content ml-auto">
+							<div class="top_bar_user">
+								<div class="user_icon"><img src="{{url_for('static',filename='images/user.svg')}}" alt=""></div>
+								{%if current_user.is_authenticated%}
+								<div><a href="{{ url_for('SignOut') }}">SignOut</a></div>
+								{%else%}
+								<div><a href="{{ url_for('SignUp') }}">Sign Up</a></div>
+								<div><a href="{{ url_for('SignIn') }}">Sign In</a></div>
+								{%endif%}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+		<!-- Header Main -->
+		<div class="header_main">
+			<div class="container">
+				<div class="row">
+
+					<!-- Logo -->
+					<div class="col-lg-2 col-sm-3 col-3 order-1">
+						<div class="logo_container">
+							<div class="logo"><a href="#">OneTech</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- Contact Form -->
+
+	<div class="contact_form">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 offset-lg-1">
+					<div class="contact_form_container">
+						<!-- <div class="contact_form_title">Get in Touch</div> -->
+
+							<!-- form start -->
+				<form METHOD="post" class="form-container" autocomplete="off" >
+					<div class="box">
+					<h4>Login Here</h4>
+					<div class="form-group">
+						<label for="exampleInputEmail">Email Address</label>
+						{{ form.email (class="form-control form-control-lg ")}}
+                        {% if form.email.errors %}
+
+                            {% for error in form.email.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        {% else %}
+
+                        {% endif %}
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Password</label>
+						{{ form.password (class="form-control form-control-lg ")}}
+                         {% if form.password.errors %}
+
+                            {% for error in form.password.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        {% else %}
+
+                        {% endif %}
+					</div>
+					<!-- <div class="checkbox">
+						{{form.remember.label}}
+					</div> -->
+                         <a href="{{ url_for('SignIn') }}" >{{ form.submit(class="btn btn-block btn-success")}}</a>
+
+						<a href="{{url_for('SignUp')}}">Don't have an account ? </a><br>
+				</form>
+			<!-- form end -->
+						<!-- <form action="#" id="contact_form">
+							<div class="contact_form_inputs d-flex flex-md-row flex-column justify-content-between align-items-between">
+								<input type="text" id="contact_form_name" class="contact_form_name input_field" placeholder="Your name" required="required" data-error="Name is required.">
+								<input type="text" id="contact_form_email" class="contact_form_email input_field" placeholder="Your email" required="required" data-error="Email is required.">
+								<input type="text" id="contact_form_phone" class="contact_form_phone input_field" placeholder="Your phone number">
+							</div>
+							<div class="contact_form_text">
+								<textarea id="contact_form_message" class="text_field contact_form_message" name="message" rows="4" placeholder="Message" required="required" data-error="Please, write us a message."></textarea>
+							</div>
+							<div class="contact_form_button">
+								<button type="submit" class="button contact_submit_button">Send Message</button>
+							</div>
+						</form> -->
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Newsletter -->
+
+	<!-- <div class="newsletter">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
+						<div class="newsletter_title_container">
+							<div class="newsletter_icon"><img src="images/send.png" alt=""></div>
+							<div class="newsletter_title">Sign up for Newsletter</div>
+							<div class="newsletter_text"><p>...and receive %20 coupon for first shopping.</p></div>
+						</div>
+						<div class="newsletter_content clearfix">
+							<form action="#" class="newsletter_form">
+								<input type="email" class="newsletter_input" required="required" placeholder="Enter your email address">
+								<button class="btn btn-block btn-success">Subscribe</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> -->
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-3 footer_col">
+					<div class="footer_column footer_contact">
+						<div class="logo_container">
+							<div class="logo"><a href="#">SenseCart</a></div>
+						</div>
+						<div class="footer_title">Got Question? Call Us 24/7</div>
+						<div class="footer_phone">+1(226) 909-7098</div>
+						<div class="footer_contact_text">
+							<p>Alwar</p>
+							<p>Rajasthan,India</p>
+						</div>
+						<div class="footer_social">
+							<ul>
+								<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+								<li><a href="#"><i class="fab fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fab fa-youtube"></i></a></li>
+								<li><a href="#"><i class="fab fa-google"></i></a></li>
+								<li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2">
+					<div class="footer_column">
+						<div class="footer_title">Customer Care</div>
+						<ul class="footer_list">
+							<!-- <li><a href="#">My Account</a></li> -->
+							<!-- <li><a href="#">Order Tracking</a></li> -->
+							<!-- <li><a href="#">Wish List</a></li> -->
+							<li><a href="#">Customer Services</a></li>
+							<!-- <li><a href="#">Returns / Exchange</a></li> -->
+							<li><a href="#">FAQs</a></li>
+							<li><a href="#">Support</a></li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+
+	<!-- Copyright -->
+
+	<!-- <div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					
+					<div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
+						<div class="copyright_content"> Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+<!-- Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+ Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. 
+</div>
+						<div class="logos ml-sm-auto">
+							<ul class="logos_list">
+								<li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
+								<li><a href="#"><img src="images/logos_2.png" alt=""></a></li>
+								<li><a href="#"><img src="images/logos_3.png" alt=""></a></li>
+								<li><a href="#"><img src="images/logos_4.png" alt=""></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div> -->
+</div>
+
+
+<script src="{{ url_for('static',filename='script/jquery-3.3.1.min.js')}}"></script>
+<script src="{{ url_for('static',filename='styles/bootstrap4/popper.js')}}"></script>
+<script src="{{ url_for('static',filename='styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/greensock/TweenMax.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/greensock/TimelineMax.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/greensock/animation.gsap.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/greensock/ScrollToPlugin.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/easing/easing.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/Isotope/isotope.pkgd.min.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
+<script src="{{ url_for('static',filename='plugins/parallax-js-master/parallax.min.js')}}"></script>
+<script src="{{ url_for('static',filename='script/shop_custom.js')}}"></script>
+</body>
+
+</html>
