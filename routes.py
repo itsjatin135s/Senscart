@@ -30,20 +30,20 @@ def home():
 @app.route('/compare/<string:id>')
 def details(id):
     # print(id)
-    x1=request1(id)
-    flipdata=flipkart(x1)
-    amzdata=amazon(x1)
-    snapdata=snapdeal(x1)
+    # x1=request1(id)
+    flipdata=flipkart(id)
+    amzdata=amazon(id)
+    snapdata=snapdeal(id)
     return render_template('shop.html',flipdata=flipdata,amzdata=amzdata,snapdata=snapdata)
 
 
 @app.route('/compared/PersonalisedForYou',methods=['POST'])
 def compare():
     query = request.form['query']
-    x1=request1(query)
-    flipdata=flipkart(x1)
-    amzdata=amazon(x1)
-    snapdata=snapdeal(x1)
+    # x1=request1(query)
+    flipdata=flipkart(query)
+    amzdata=amazon(query)
+    snapdata=snapdeal(query)
     return render_template('shop.html',flipdata=flipdata,amzdata=amzdata,snapdata=snapdata)
 
 
