@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup as soup
 from pyquery import PyQuery as jQ
 import json
 import codecs
+import requests
 from flask import url_for
 
 
@@ -14,10 +15,13 @@ def amazon(query):
 
 
 	try:
-		file="amazon{}.html".format(query)
-		opener=codecs.open( file , 'r','utf-8-sig')
-		read=opener.read()
-		soup1=soup(read,'lxml')
+		# file="amazon{}.html".format(query)
+		# opener=codecs.open( file , 'r','utf-8-sig')
+		# read=opener.read()
+
+		headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
+		amazons = requests.get("https://www.amazon.in/s?k={}".format(query),headers=headers)
+		soup1=soup(amazons.text,'lxml')
 
 
 

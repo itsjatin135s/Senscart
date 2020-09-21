@@ -3,7 +3,7 @@ from pyquery import PyQuery as jQ
 import json
 import codecs
 from flask import url_for
-
+import requests
 
 def flipkart(query):
 
@@ -14,48 +14,61 @@ def flipkart(query):
 
 
 	try:
-		file="flipkart{}.html".format(query)
-		opener=codecs.open(file, 'r','utf-8-sig')
-		read=opener.read()
-		query= jQ(read)
+		# file="flipkart{}.html".format(query)
+		# opener=codecs.open(file, 'r','utf-8-sig')
+		# read=opener.read()
+		# query= jQ(read)
 
 
-		script=query("#is_script").text()
+		# script=query("#is_script").text()
+		headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
+		flipkarts = requests.get("https://www.flipkart.com/search?q={}".format(query),headers=headers)
+		script1 = soup(flipkarts.text,'lxml')
+		script= script1.find('script', {"id":"is_script"}).text
+
+
 		remove1=script.replace('window.__INITIAL_STATE__ = ','')
 		remove2=remove1[:-1]
-		json1=json.loads(remove2)
+		k1=json.loads(remove2)
 
+		# remove1=k.replace('window.__INITIAL_STATE__ = ','')
+		# remove2=remove1[:-1]
+		# k1=json.loads(remove2)
+		# print(k1)
 		for x in range(1,11):
-			k=(json1['pageDataV4']['page']['data']['10003'][x]['widget']['data']['products'][0]['productInfo']['value']['media']['images'][0]['url'])
-			width=k.replace("{@width}","250")
+			j=(k1['pageDataV4']['page']['data']['10003'][x]['widget']['data']['products'][0]['productInfo']['value']['media']['images'][0]['url'])
+			width=j.replace("{@width}","250")
 			height=width.replace("{@height}","250")
 			final=height.replace("{@quality}","70")
 			imglink.append(final)
-
-
+			print(final)
+		
 		for x in range(1,11):
-			l=(json1['pageDataV4']['page']['data']['10003'][x]['widget']['data']['products'][0]['productInfo']['value']['pricing']['finalPrice']['decimalValue'])
+			l=(k1['pageDataV4']['page']['data']['10003'][x]['widget']['data']['products'][0]['productInfo']['value']['pricing']['finalPrice']['decimalValue'])
 			rs="₹"+l
 			prices.append(rs)
-
+			print(rs)
 
 		for x in range(1,11):
-			m=(json1['pageDataV4']['page']['data']['10003'][x]['widget']['data']['products'][0]['productInfo']['value']['smartUrl'])
+			m=(k1['pageDataV4']['page']['data']['10003'][x]['widget']['data']['products'][0]['productInfo']['value']['smartUrl'])
 			productlink.append(m)
+			print(m)
 
 
 		for x in range(1,11):
-			n=(json1['pageDataV4']['page']['data']['10003'][x]['widget']['data']['products'][0]['productInfo']['value']['titles']['title'])
+			n=(k1['pageDataV4']['page']['data']['10003'][x]['widget']['data']['products'][0]['productInfo']['value']['titles']['title'])
 			o=n[0:33]+"..."
 			producttitle.append(o)
+			print(o)
 
 	except:
+		print(script)
 		errorimg=url_for('static',filename='images/error.png')
 		imglink.append(errorimg)
 		prices.append("Unavilable")
 		producttitle.append("Something Went Wrong")
 		productlink.append("#")
-
+		print("hey buddy here i am")
 
 	return(zip(imglink,prices,producttitle,productlink))
 

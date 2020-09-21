@@ -1,7 +1,7 @@
 import codecs
 from bs4 import BeautifulSoup as soup
 from flask import url_for
-
+import requests
 
 def snapdeal(query):
 
@@ -11,10 +11,12 @@ def snapdeal(query):
 	productlink=[]
 
 	try:
-		file="snapdeal{}.html".format(query)
-		opener=codecs.open(file, 'r','utf-8-sig')
-		read=opener.read()
-		soup1=soup(read,'lxml')
+		# file="snapdeal{}.html".format(query)
+		# opener=codecs.open(file, 'r','utf-8-sig')
+		# read=opener.read()
+		headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
+		snapdeals = requests.get("https://www.snapdeal.com/search?keyword={}".format(query),headers=headers)
+		soup1=soup(snapdeals.text,'lxml')
 	
 		j=soup1.find_all('source')
 		for image in j:
