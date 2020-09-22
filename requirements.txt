@@ -58,7 +58,7 @@ pytz==2020.1
 queuelib==1.5.0
 rauth==0.7.3
 regex==2020.6.8
-requests==2.24.0
+requests==2.22.0
 Scrapy==2.3.0
 service-identity==18.1.0
 silpa-common==0.3
