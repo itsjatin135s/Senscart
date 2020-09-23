@@ -1,19 +1,17 @@
-import codecs
 from bs4 import BeautifulSoup as soup
 from flask import url_for
 import requests
 
-def snapdeal(query):
+def snapdeal(rawquery):
 
 	imglink=[]
 	prices=[]
 	producttitle=[]
 	productlink=[]
 
+	query=rawquery.replace(" ","-")
+
 	try:
-		# file="snapdeal{}.html".format(query)
-		# opener=codecs.open(file, 'r','utf-8-sig')
-		# read=opener.read()
 		headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
 		snapdeals = requests.get("https://www.snapdeal.com/search?keyword={}".format(query),headers=headers)
 		soup1=soup(snapdeals.text,'lxml')
@@ -21,20 +19,20 @@ def snapdeal(query):
 		j=soup1.find_all('source')
 		for image in j:
 			imglink.append(image['srcset'])
-			# print(image['srcset'])
+			
 
 		k=soup1.find_all('span',{'class':'product-price'})
 		for price in k:
 			rs="₹"+price['display-price']
 			prices.append(rs)
-			# print(price['display-price'])
+			
 
 		l=soup1.find_all('p',{'class':'product-title'})
 		for title in l:
 			title1=title['title']
 			title2=title1[0:33]+"..."
 			producttitle.append(title2)
-			# print(title['title'])
+			
 
 	
 		m=soup1.find_all('div',{'class':'product-desc-rating'})

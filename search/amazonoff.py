@@ -1,19 +1,15 @@
-import scrapy
-import os
+import requests
 from bs4 import BeautifulSoup as soup
-import codecs
-import json
-from pyquery import PyQuery as jQ
+
+
 
 def amzoff():
 	photo=[]
 	productink=[]
 	title=[]
-	amazon=os.system("scrapy fetch --nolog https://www.amazon.in > amazonoffer.html")
-	#----amazon offer shower
-	opener=codecs.open("amazonoffer.html", 'r','utf-8-sig')
-	read=opener.read()
-	soup1=soup(read,'lxml')
+	headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
+	amazons = requests.get("https://www.amazon.in/",headers=headers)
+	soup1=soup(amazons.text,'lxml')
 
 
 
@@ -31,7 +27,6 @@ def amzoff():
 
 	limit1=0
 	j=soup1.find_all('div',{'class':'deals-shoveler-card-image'})
-	# print(j)
 	for image in j:
 		k=image.find_all('a')
 		if limit1<6:

@@ -1,9 +1,6 @@
-import scrapy
-import os
+import requests
 from bs4 import BeautifulSoup as soup
-import codecs
-import json
-from pyquery import PyQuery as jQ
+
 
 
 def snapoff():
@@ -12,12 +9,11 @@ def snapoff():
 	productlink=[]
 	discount=[]
 
-	# snapdeal=os.system("scrapy fetch --nolog https://www.snapdeal.com > snapdealoffer.html")
+	headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
+	snapdeals = requests.get("https://www.snapdeal.com/",headers=headers)
+	soup1=soup(snapdeals.text,'lxml')
 
-	opener1=codecs.open("snapdealoffer.html", 'r','utf-8-sig')
-	read1=opener1.read()
-	soup1=soup(read1,'lxml')
-# print(soup1)
+	
 	m=soup1.find_all('div',{'class':'product-img preLoadBackgr'})
 	for div in m:
 		l=div.find_all('img',{'class':'lazy-load'})
