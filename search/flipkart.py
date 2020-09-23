@@ -21,15 +21,11 @@ def flipkart(rawquery):
 		if f.ok :
 			pass
 		else :
-			f=requests.get("https://flipkart.com/search?q={}".format(query),headers=headers)
-			if f.ok :
-				pass
-			else:
-				errorimg=url_for('static',filename='images/error.png')
-				imglink.append(errorimg)
-				prices.append("Unavilable")
-				producttitle.append("Something Went Wrong")
-				productlink.append("#")
+			errorimg=url_for('static',filename='images/error.png')
+			imglink.append(errorimg)
+			prices.append("Unavilable")
+			producttitle.append("Something Went Wrong")
+			productlink.append("#")
 
 
 
