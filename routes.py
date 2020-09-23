@@ -7,7 +7,6 @@ from flask_login import login_user, logout_user, login_required, current_user,Lo
 from search.amazonoff import amzoff
 from search.snapdealoff import snapoff
 from search.flipkartoff import flipoff
-from search.searchrequest import request1
 from search.flipkart import flipkart
 from search.amazon import amazon
 from search.snapdeal import snapdeal
@@ -18,10 +17,6 @@ def home():
     data1 = amzoff()
     photo,title1,productlink,discount = snapoff()
     data=flipoff()
-
-    # print(len(productlink))
-    # print(len(discount))
-
     return render_template('index.html', data1=data1,data=data,data2=zip(photo,title1,productlink,discount))
 
 
@@ -29,8 +24,6 @@ def home():
 
 @app.route('/compare/<string:id>')
 def details(id):
-    # print(id)
-    # x1=request1(id)
     flipdata=flipkart(id)
     amzdata=amazon(id)
     snapdata=snapdeal(id)
@@ -40,7 +33,7 @@ def details(id):
 @app.route('/compared/PersonalisedForYou',methods=['POST'])
 def compare():
     query = request.form['query']
-    # x1=request1(query)
+    id=query
     flipdata=flipkart(query)
     amzdata=amazon(query)
     snapdata=snapdeal(query)
