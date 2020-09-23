@@ -18,14 +18,14 @@ def flipkart(rawquery):
 		headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
 		f=requests.get("https://flipkart.com/search?q={}".format(query),headers=headers)
 
-		if f.ok :
-			pass
-		else :
-			errorimg=url_for('static',filename='images/error.png')
-			imglink.append(errorimg)
-			prices.append("Unavilable")
-			producttitle.append("Something Went Wrong")
-			productlink.append("#")
+		# if f.ok :
+		# 	pass
+		# else :
+		# 	errorimg=url_for('static',filename='images/error.png')
+		# 	imglink.append(errorimg)
+		# 	prices.append("Unavilable")
+		# 	producttitle.append("Something Went Wrong")
+		# 	productlink.append("#")
 
 
 
