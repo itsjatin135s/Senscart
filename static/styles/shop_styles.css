@@ -93,6 +93,10 @@ a, a:hover, a:visited, a:active, a:link
 	-webkit-font-smoothing: antialiased;
 	-webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
 	text-shadow: rgba(0,0,0,.01) 0 0 1px;
+	width: 177px;
+	height: 107px;
+	display: ruby;
+
 }
 p a:active
 {
@@ -986,14 +990,14 @@ select option
 {
 	display: none;
 	position: absolute;
-	top: 50%;
+	top: 21%;
 	-webkit-transform: translateY(-50%);
 	-moz-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
-	right: 0;
-	font-size: 20px;
+	right: -10px;
+	font-size: 14px;
 }
 .cat_menu li ul
 {
@@ -1840,13 +1844,16 @@ select option
 }
 .viewed_item
 {
-	width: 100%;
+	width: 200px;
 	background: #FFFFFF;
 	border-radius: 8px;
 	padding-top: 25px;
 	padding-bottom: 25px;
 	padding-left: 25px;
 	padding-right: 15px;
+	height: 200px;
+	margin-left: auto;
+	margin-right: auto;
 }
 .viewed_image
 {
@@ -1857,12 +1864,16 @@ select option
 {
 	display: block;
 	max-width: 50%;
-	max-height: 100%;
+	max-height: 100px;
+	margin-left: auto;
+	margin-right: auto;
+
 }
 .viewed_content
 {
 	width: 100%;
 	margin-top: 15px;
+	overflow: -moz-hidden-unscrollable;
 }
 .viewed_price
 {
