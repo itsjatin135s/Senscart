@@ -1,3 +1,5 @@
+from urllib.request import urlopen
+#above is only for amazon because of 503 response
 from bs4 import BeautifulSoup as soup
 import requests
 from flask import url_for
@@ -13,8 +15,9 @@ def amazon(rawquery):
 
 	query=rawquery.replace(" ","-")
 	try:
-		headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
-		amazons = requests.get("https://www.amazon.in/s?k={}".format(query),headers=headers)
+		# headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
+		# amazons = requests.get("https://www.amazon.in/s?k={}".format(query),headers=headers)
+		amazons=urlopen('https://amazon.in/s?k=iphone').read()
 		soup1=soup(amazons.text,'lxml')
 		
 
@@ -36,30 +39,34 @@ def amazon(rawquery):
 
 
 		limit=0
-		j=soup1.find_all('img',{'class':'s-image'})
-		for image in j:
-			limit = limit+1
-			if limit<=11:
-				if limit ==1:
-					pass
+		divs = soup1.find_all('div',{'class':'a-section aok-relative s-image-fixed-height'})
+		for mdivs in divs:
+			j=mdivs.find_all('img',{'class':'s-image'})
+			for image in j:
+				limit = limit+1
+				if limit<=11:
+					if limit ==1:
+						pass
+					else:
+						imglink.append(image['src'])
 				else:
-					imglink.append(image['src'])
-			else:
-				break
+					break
 
 
 		limit1=0
-		k=soup1.find_all('span',{'class':'a-price-whole'})
-		for image in k:
-			limit1 = limit1+1
-			if limit1<=11:
-				if limit1==1:
-					pass
+		divsk = soup1.find_all('div',{'class':'a-row'})
+		for mdivsk in divsk:
+			k=mdivsk.find_all('span',{'class':'a-price-whole'})
+			for image in k:
+				limit1 = limit1+1
+				if limit1<=11:
+					if limit1==1:
+						pass
+					else:
+						rs=("₹"+image.text)
+						prices.append(rs)
 				else:
-					rs=("₹"+image.text)
-					prices.append(rs)
-			else:
-				break
+					break
 
 
 
