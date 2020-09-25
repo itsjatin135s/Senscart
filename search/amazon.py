@@ -21,20 +21,20 @@ def amazon(rawquery):
 		soup1=soup(amazons.text,'lxml')
 		
 
-		if amazons.ok:
-			pass
-		else :
-			amazons = requests.get("https://www.amazon.in/s?k={}".format(query),headers=headers)
-			soup1=soup(amazons.text,'lxml')
+		# if amazons.ok:
+		# 	pass
+		# else :
+		# 	amazons = requests.get("https://www.amazon.in/s?k={}".format(query),headers=headers)
+		# 	soup1=soup(amazons.text,'lxml')
 
-			if amazons.ok :
-				pass
-			else:
-				errorimg=url_for('static',filename='images/error.png')
-				imglink.append(errorimg)
-				prices.append("Unavilable")
-				producttitle.append("Something Went Wrong")
-				productlink.append("#")
+		# 	if amazons.ok :
+		# 		pass
+		# 	else:
+		# 		errorimg=url_for('static',filename='images/error.png')
+		# 		imglink.append(errorimg)
+		# 		prices.append("Unavilable")
+		# 		producttitle.append("Something Went Wrong")
+		# 		productlink.append("#")
 		
 
 
