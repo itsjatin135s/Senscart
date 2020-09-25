@@ -18,6 +18,7 @@ def amazon(rawquery):
 		headers = {'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:57.0) Gecko/20100101 Firefox/57.0'}
 		amazons = requests.get("https://www.amazon.in/s?k={}".format(query),headers=headers,verify=False)
 		# amazons=urlopen('https://amazon.in/s?k=iphone').read()
+		print(amazons)
 		soup1=soup(amazons.text,'lxml')
 		
 
