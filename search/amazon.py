@@ -3,7 +3,7 @@ from urllib.request import urlopen
 from bs4 import BeautifulSoup as soup
 import requests
 from flask import url_for
-
+import random
 
 def amazon(rawquery):
 
@@ -16,7 +16,28 @@ def amazon(rawquery):
 	query=rawquery.replace(" ","-")
 	# try:
 	# proxies={'https':'103.61.100.49:34144'}
-	headers = {'User-Agent':'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'}
+
+
+	# agent=['Mozilla/5.0 (Amiga; U; AmigaOS 1.3; en; rv:1.8.1.19) Gecko/20081204 SeaMonkey/1.1.14',
+	# 		'Mozilla/5.0 (AmigaOS; U; AmigaOS 1.3; en-US; rv:1.8.1.21) Gecko/20090303 SeaMonkey/1.1.15',
+	# 		'Mozilla/5.0 (AmigaOS; U; AmigaOS 1.3; en; rv:1.8.1.19) Gecko/20081204 SeaMonkey/1.1.14',
+	# 		'Mozilla/5.0 (Android 2.2; Windows; U; Windows NT 6.1; en-US) AppleWebKit/533.19.4 (KHTML, like Gecko) Version/5.0.3 Safari/533.19.4',
+	# 		'Mozilla/5.0 (BeOS; U; BeOS BeBox; fr; rv:1.9) Gecko/2008052906 BonEcho/2.0',
+	# 		'Mozilla/5.0 (BeOS; U; BeOS BePC; en-US; rv:1.8.1.1) Gecko/20061220 BonEcho/2.0.0.1',
+	# 		'Mozilla/5.0 (BeOS; U; BeOS BePC; en-US; rv:1.8.1.10) Gecko/20071128 BonEcho/2.0.0.10',
+	# 		'Mozilla/5.0 (BeOS; U; BeOS BePC; en-US; rv:1.8.1.17) Gecko/20080831 BonEcho/2.0.0.17',
+	# 		'Mozilla/5.0 (BeOS; U; BeOS BePC; en-US; rv:1.8.1.6) Gecko/20070731 BonEcho/2.0.0.6',
+	# 		'Mozilla/5.0 (BeOS; U; BeOS BePC; en-US; rv:1.8.1.7) Gecko/20070917 BonEcho/2.0.0.7',
+	# 		'Mozilla/5.0 (BeOS; U; BeOS BePC; en-US; rv:1.8.1b2) Gecko/200609']
+	# x=random.randint(0,9)
+
+	a=[]
+	f=open('useragent.txt','r')
+	for i in f:
+		a.append(i)
+	agent=a[random.randint(0,998)].replace('\n','')
+	
+	headers = {'User-Agent':agent}
 	amazons = requests.get("https://www.amazon.in/s?k={}".format(query),headers=headers,verify=False)
 	# amazons=urlopen('https://amazon.in/s?k=iphone').read()
 	soup1=soup(amazons.text,'lxml')
